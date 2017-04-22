@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Other secret stuff (development values in git repo)
+MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiYXhmb3JkIiwiYSI6ImNqMWMwYXI5MDAwNG8zMm5uanFyeThmZDEifQ.paAXk3S29-VVw1bhk458Iw'
+TELEGRAM_BOT_TOKEN = '360648398:AAG-vPZv-0GwPkqRkIs3sVogfM4M3wKxkFg'
+TELEGRAM_BOT_CHAT_ID = -150366976
 
 # Application definition
 
@@ -34,12 +38,14 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'membership.apps.MembershipConfig',
     'distelbot.apps.DistelbotConfig',
+    'trademarks.apps.TrademarksConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +128,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+# Email - development settings
+# Intended for use with python debugging smtp server:
+# python -m smtpd -n -c DebuggingServer localhost:1025
+EMAIL_HOST = "localhost"
+EMAIL_PORT = 1025
+DEFAULT_FROM_EMAIL = "contact@hackspace.org.uk"
+
+# Domain - used for generating hyperlinks in templates
+DOMAIN = "www.hackspace.org.uk"
